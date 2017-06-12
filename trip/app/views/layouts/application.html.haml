@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8 noindex", "http-equiv" => "Content-Type", :name => "robots"}/
+    %title Traning site トリッピース
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    %script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyCv_vJOYoOt9ovvUxHvCrUx0ZjsVMWwJqY&callback=initMap"}
+  %body
+    #loading
+      = image_tag("#{ image_path "gif-load.gif"}", id: "page_load")
+    - if user_signed_in?
+      = render "layouts/header"
+    = yield
+    = render "layouts/footer"

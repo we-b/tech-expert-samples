@@ -1,0 +1,211 @@
+/* -- event-new style ------------------------------------ */
+.attendnew__container {
+  margin: 100px auto auto;
+  width: 960px;
+  @include before_block();
+
+  &-cover {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    background: #fdfdfd;
+
+    &-img {
+    background-size: cover;
+    width: 980px;
+    height: 300px;
+    filter: blur(5px);
+    margin: -10px;
+    }
+
+    &-title {
+      text-shadow: 0 2px 2px rgba(0,0,0,.4);
+      color: #fff;
+      position: absolute;
+      top: 25%;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+
+  &-notice {
+    border: 1px solid #ccc;
+    margin: 0 0 20px;
+    background: #fdfdfd;
+    padding: 20px;
+  }
+
+  &-step1 {
+    @include before_block();
+    @include clearfix();
+
+    &-btn {
+      background-color: #fcb753;
+      color: #fff;
+      border: 1px solid transparent;
+      border-radius: 0;
+      height: auto;
+      padding: 6px 12px;
+      font-size: 12px;
+      vertical-align: middle;
+      background-image: none;
+      display: block;
+      width: 170px;
+      margin: 0 auto 10px;
+      text-align: center;
+    }
+  }
+
+  &-step2 {
+    @include before_block();
+    @include clearfix();
+
+    &-left {
+      @include before_block();
+      @include clearfix();
+      float: left;
+      width: 520px;
+      margin-right: 20px;
+    }
+  }
+
+  &-plan {
+    @include clearfix();
+
+    &-left {
+    float: left;
+    width: 520px;
+    margin-right: 20px;
+    }
+
+    &-right {
+      float: left;
+      @include clearfix();
+    }
+  }
+
+  &-schedule {
+    margin: 0 0 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fdfdfd;
+    @include before_block();
+    @include clearfix();
+
+    &-headline {
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 5px;
+    }
+  }
+
+  &-price {
+    margin: 0 0 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fdfdfd;
+    @include before_block();
+    @include clearfix();
+    &-headline {
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 5px;
+    }
+  }
+
+  &-comment {
+    margin: 0 0 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fdfdfd;
+    @include before_block();
+    @include clearfix();
+
+    &-headline {
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    &-textbox {
+      padding: 4px;
+      width: 100%;
+      height: 100px;
+      box-sizing: border-box;
+    }
+  }
+
+  &-private {
+    margin: 0 0 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fdfdfd;
+    @include before_block();
+
+    &-notice {
+      font-size: 12px;
+      margin: 0 0 10px;
+      color: #999;
+    }
+  }
+
+  &-form {
+    &-item {
+      margin-bottom: 20px;
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    &-btn {
+      &-submit {
+        background-color: #fcb753;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 0;
+        height: auto;
+        padding: 6px 12px;
+        font-size: 12px;
+        vertical-align: middle;
+        background-image: none;
+        display: block;
+        width: 170px;
+        margin: 0 auto 10px;
+        text-align: center;
+        &:hover{
+          color: #ccc;
+          text-decoration: none;
+        }
+      }
+
+      &-back {
+        background-color: white;
+        border: 1px solid transparent;
+        border-radius: 0;
+        height: auto;
+        padding: 6px 12px;
+        font-size: 12px;
+        vertical-align: middle;
+        background-image: none;
+        display: block;
+        width: 170px;
+        margin: 0 auto 10px;
+        text-align: center;
+        &:hover{
+          color: #ccc;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

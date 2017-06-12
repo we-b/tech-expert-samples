@@ -1,0 +1,70 @@
+.user__container
+  .user__container-profile
+    .user__container-profile-cover
+      = image_tag("profile_cover.jpg",class: "user__container-profile-cover-img")
+    .user__container-profile-infos-upper
+      .user__container-profile-infos-avatar
+        = image_tag("#{@user.avatar}",class: "user__container-profile-infos-avatar-img")
+      .user__container-profile-infos-fullname
+        = @user.fullname
+      .user__container-profile-infos-statuses
+        .user__container-profile-infos-statuses-status
+          .user__container-profile-infos-statuses-status-sum
+            .user__container-profile-infos-statuses-status-text
+              = @events.count
+          .user__container-profile-infos-statuses-status-label 参加した企画
+        .user__container-profile-infos-statuses-status
+          .user__container-profile-infos-statuses-status-sum
+            .user__container-profile-infos-statuses-status-text
+              = @user.attends_count - @events.count
+          .user__container-profile-infos-statuses-status-label 申込中の企画
+        .user__container-profile-infos-statuses-status
+          .user__container-profile-infos-statuses-status-sum
+            .user__container-profile-infos-statuses-status-text
+              = @user.favorites_count
+          .user__container-profile-infos-statuses-status-label お気に入り企画
+        .user__container-profile-infos-statuses-status
+          .user__container-profile-infos-statuses-status-sum
+            .user__container-profile-infos-statuses-status-text
+              = @user.events.count
+          .user__container-profile-infos-statuses-status-label 作成した企画
+    .user__container-profile-infos-lower
+      .user__container-profile-infos-lower-list
+        %h2.user__container-profile-infos-lower-title 性別
+        %p.user__container-profile-infos-lower-desc
+          %span.user__container-profile-infos-lower-desc-span
+            - if @user.gender.present?
+              = @user.gender == "male" ? "男性" : "女性"
+            - else
+              未設定
+        %h2.user__container-profile-infos-lower-title 誕生日
+        %p.user__container-profile-infos-lower-desc
+          %span.user__container-profile-infos-lower-desc-span
+            - if @user.birthday.present?
+              = @user.birthday
+            - else
+              未設定
+        %h2.user__container-profile-infos-lower-title 自己紹介
+        %p.user__container-profile-infos-lower-desc
+          %span.user__container-profile-infos-lower-desc-span
+            - if @user.profile.present?
+              = @user.profile
+            - else
+              未設定
+  .user__container-mylist
+    .user__container-mylist-tabs
+      %ul.user__container-mylist-ul
+        %li.user__container-mylist-li.user__container-mylist-li-active
+          = link_to "参加済",  users_mylist_path(@user.id, list_name: "attended"), remote: true, class: "user__container-mylist-text"
+        %li.user__container-mylist-li
+          = link_to "申込中",  users_mylist_path(@user.id, list_name: "apply"), remote: true, class: "user__container-mylist-text"
+        %li.user__container-mylist-li
+          = link_to "お気に入り", users_mylist_path(@user.id, list_name: "fav"), remote: true, class: "user__container-mylist-text"
+        %li.user__container-mylist-li
+          = link_to "作成",  users_mylist_path(@user.id, list_name: "producer"), remote: true, class: "user__container-mylist-text"
+    .user__container-mylist-events
+      .user__container-mylist-events-box
+        .user__container-mylist-events-contents
+          = render partial: 'layouts/event_tile', collection: @events, as: :event
+        .user__container-mylist-events-contents-paginate
+          = paginate @events, :remote => true

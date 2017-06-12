@@ -1,0 +1,59 @@
+.eventnew__container
+  = form_for(@event, html: {class: "eventnew__container-form"}) do |f|
+    .eventnew__container-desc
+      .eventnew__container-desc-text
+        企画を作成する
+      = image_tag "form_step.png", class: "eventnew__container-desc-img"
+    .eventnew__container-basic
+      .eventnew__container-basic-schedule
+        .eventnew__container-basic-main
+          %h1.eventnew__container-basic-headline
+            %span.eventnew__container-basic-headline-text
+          .eventnew__container-basic-date
+            %h1.eventnew__container-basic-headline
+              参加受付期間
+            .eventnew__container-basic-schedule
+              %span.eventnew__container-basic-schedule-span 開始日
+              .eventnew__container-basic-schedule-date
+                = raw sprintf(f.date_select(:apply_start_date, use_month_numbers: true, start_year: (Time.now.year) , default: Time.now , date_separator:'%s' ),'年 ', '月 ') + '日'
+              %br
+              %span.eventnew__container-basic-schedule-span 終了日
+              .eventnew__container-basic-schedule-date
+                = raw sprintf(f.date_select(:apply_end_date, use_month_numbers: true, start_year: (Time.now.year), default: Time.now + 2.week , date_separator:'%s' ),'年 ', '月 ') + '日'
+        .eventnew__container-basic-tips
+          .eventnew__container-basic-text
+            参加を受け付ける期間を入力してください。
+      .eventnew__container-basic-schedule
+        .eventnew__container-basic-main
+          %h1.eventnew__container-basic-headline
+            %span.eventnew__container-basic-headline-text
+          .eventnew__container-basic-date
+            %h1.eventnew__container-basic-headline
+              日程
+            .eventnew__container-basic-schedule
+              %span.eventnew__container-basic-schedule-span 開始日
+              .eventnew__container-basic-schedule-date
+                = raw sprintf(f.date_select(:start_date, use_month_numbers: true, start_year: (Time.now.year), default: Time.now + 1.month , date_separator:'%s' ),'年 ', '月 ') + '日'
+              %br
+              %span.eventnew__container-basic-schedule-span 終了日
+              .eventnew__container-basic-schedule-date
+                = raw sprintf(f.date_select(:end_date, use_month_numbers: true, start_year: (Time.now.year), default: Time.now + 1.month + 1.day , date_separator:'%s' ),'年 ', '月 ') + '日'
+        .eventnew__container-basic-tips
+          .eventnew__container-basic-text
+            開催期間を入力してください。不明の場合は暫定の日にちとしてください。
+      .eventnew__container-basic-dest
+        .eventnew__container-basic-main
+          %h1.eventnew__container-basic-headline
+            行き先
+          .eventnew__container-basic-dest
+            %span.eventnew__container-basic-dest-text
+              設定されていません。
+            %button.eventnew__container-basic-dest-btn
+              設定する
+            = f.hidden_field :dest, value: "", id: "js-dest-value"
+      = render partial: 'layouts/event_dest_search'
+      .eventnew__container-basic-tips
+        .eventnew__container-basic-text
+          行き先を設定しましょう。
+    .eventnew__container-form-submit
+      = f.submit "詳細入力画面へ", name: "draft", class: "eventnew__container-form-submit-btn"

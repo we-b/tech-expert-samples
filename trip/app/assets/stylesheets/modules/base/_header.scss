@@ -1,0 +1,241 @@
+/* -- jquery-ui custom style ------------------------------------ */
+.ui-datepicker {
+  font-size: 120%;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+  border: none;
+  background: #000;
+  color: #fff;
+}
+
+.ui-datepicker td a {
+  text-align: center;
+}
+
+.ui-state-highlight {
+  color: #fff;
+  background: #000;
+  border: 0;
+}
+
+.ui-datepicker-calendar tr th span {
+  border-bottom: 1px dotted;
+}
+
+.ui-widget-header {
+  border: 0;
+  background: none;
+  color: #333333;
+}
+
+#ui-datepicker-div {
+  padding: 15px;
+  width: 380px;
+  height: 300px;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+  border: .07692em solid #ccc;
+  background-image: linear-gradient(to bottom,#ececec 0,#ddd 100%);
+  transition: border-color .2s linear;
+  padding: .38462em .61538em;
+  font-size: 12px;
+  opacity: .7;
+}
+
+
+/* -- header style ------------------------------------ */
+header {
+  background-color: #f4eed5;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  display: block;
+}
+
+.header {
+  &-container {
+    width: 960px;
+    margin: 0 auto;
+  }
+
+  &-logo {
+    display: inline-block;
+    width: 128px;
+    margin: 0;
+
+    &-img {
+      display: block;
+      margin: 0;
+      background: image-url("wide_s.png") 0 center no-repeat;
+      background-size: 128px 36px;
+      height: 50px;
+    }
+  }
+
+  &-nav {
+    height: 50px;
+    width: auto;
+    float: right;
+
+    &-search{
+      float: left;
+      &-form {
+        height: 50px;
+        float: left;
+        position: relative;
+      }
+      &-input {
+        background: #fff;
+        height: 20px;
+        width: 300px;
+        line-height: 20px;
+        padding: 4px 4px 4px 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        box-sizing: content-box;
+      }
+
+      &-btn {
+      display: inline-block;
+      height: auto;
+      cursor: pointer;
+      background-color: #fcb753;
+      color: #fff;
+      padding: 5px 50px;
+      font-size: 12px;
+      font-weight: 400;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 0;
+      margin: 10px 0;
+      }
+
+      &-box {
+        background: #fff;
+        position: absolute;
+        width: 344px;
+        top: 48px;
+        left: 0;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+
+      &-date {
+        &-label {
+          width: 100%;
+          display: inline-block;
+          color: #999;
+        }
+
+        &-start-input {
+          padding: 2px 5px;
+          margin-left: 0px;
+          margin-right: 0px;
+          padding-right: 26px;
+          width: 127.2px;
+        }
+
+        &-end-input {
+          margin-left: 0px;
+          margin-right: 0px;
+          padding-right: 26px;
+          width: 127.2px;
+          display: inline-block;
+          vertical-align: middle;
+          outline: 0;
+          line-height: 1.5;
+          border: 1px solid #ccc;
+          background: 0 0;
+          padding: 2px 5px;
+        }
+      }
+    }
+    &-menu {
+      &-ul {
+        height: 50px;
+        float: left;
+        margin: 0;
+        position: relative;
+        padding-left: 25px;
+      }
+
+      &-li {
+        float: left;
+        list-style: none;
+        width: 50px;
+        height: 14px;
+        line-height: 14px;
+        margin: 18px 20px 0;
+        @include clearfix();
+      }
+
+      &-dropdown-ul {
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+        float: left;
+        background: #fdfdfd;
+        border: 1px solid #ccc;
+        width: 160px;
+        position: absolute;
+        top: 40px;
+        padding: 20px;
+        list-style: none;
+      }
+
+      &-dropdown-li {
+        margin-bottom: 20px;
+        list-style-type: none;
+      }
+    }
+
+    &-avatar {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      border: 0 solid #fff;
+      border-radius: 30px;
+      float: left;
+      position: relative;
+      top: -8px;
+      margin-right: 5px;
+      background: white;
+
+      &-a {
+        color: #fcb753;
+        border: 0;
+      }
+
+      &-img {
+        border: 0;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &-event {
+      display: inline-block;
+      height: auto;
+      cursor: pointer;
+      background-color: #fcb753;
+      color: #fff;
+      padding: 5px 50px;
+      font-size: 12px;
+      font-weight: 400;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 0;
+      margin: 10px 0;
+    }
+  }
+}

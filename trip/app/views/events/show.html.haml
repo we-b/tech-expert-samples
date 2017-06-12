@@ -1,0 +1,132 @@
+- unless user_signed_in?
+  = render partial: "layouts/header_no_login_event_show"
+.eventshow__container
+  .eventshow__container-box
+    %article.eventshow__container-article
+      .eventshow__container-title
+        %h1.eventshow__container-title-text
+          = @event.title
+      - if user_signed_in?
+        %section.eventshow__container-tab
+          - if @event.user.id == current_user.id
+            = link_to "企画を管理・編集", edit_event_path(@event.id), class: "eventshow__container-tab-edit"
+          = link_to "申込者一覧" , event_path(@event.id), :remote => true, class: "eventshow__container-tab-apply"
+      %section.eventshow__container-main
+        .eventshow__container-main-box
+          .eventshow__container-basic
+            .eventshow__container-img
+              .eventshow__container-img-box
+                = image_tag "#{@event.image}", class:"eventshow__container-img-image"
+            .eventshow__container-infobar
+              .eventshow__container-producer
+                .eventshow__container-producer-avatar
+                  = image_tag "#{@event.user.avatar}", class: "eventshow__container-producer-avatar-img"
+                %span.eventshow__container-producer-avatar-span
+                  = @event.user.fullname
+              .eventshow__container-info
+                .eventshow__container-fav
+                  %i.eventshow__container-fav-ico
+                  %span.eventshow__container-fav-sum
+                    = @event.favorites_count
+                .eventshow__container-attend
+                  %i.eventshow__container-attend-ico
+                  %span.eventshow__container-attend-sum
+                    = @event.attends_count
+            .eventshow__container-summary
+              %p.eventshow__container-summary-text
+                = @event.summary
+          .eventshow__container-desc
+            .eventshow__container-desc-box
+              .eventshow__container-columns
+                .eventshow__container-columns-item
+                  %h4.eventshow__container-columns-title
+                    %span.eventshow__container-columns-span 申込み受付期間
+                  %span.eventshow__container-columns-content
+                    = @event.apply_start_date
+                    から
+                    = @event.apply_end_date
+                .eventshow__container-columns-item
+                  %h4.eventshow__container-columns-title
+                    %span.eventshow__container-columns-span 日程
+                  %span.eventshow__container-columns-content
+                    = @event.start_date
+                    から
+                    = @event.end_date
+                .eventshow__container-columns-item
+                  %h4.eventshow__container-columns-title
+                    %span.eventshow__container-columns-span 行き先
+                  %span.eventshow__container-columns-content#js-event-dest-text
+                    = @event.dest
+              #js-event-dest-map
+              %h4.eventshow__container-columns-title
+                %span.eventshow__container-columns-span 予定金額
+              %span.eventshow__container-columns-content
+                = "#{(@event.price).to_s(:delimited)}"
+                円
+              %h4.eventshow__container-columns-details
+                %span.eventshow__container-columns-span
+                  %br/
+                  詳細
+              .eventshow__container-details
+                = markdown(@event.details)
+      .eventshow__modal.display-none
+        .eventshow__modal-main
+          .eventshow__modal-header
+            .eventshow__modal-headline
+              %span.eventshow__modal-headline-text
+                申込み中のユーザー
+          %section.eventshow__modal-body
+            .eventshow__modal-sum
+              .eventshow__modal-sum-box
+                .eventshow__modal-sum-value
+                  = @event.attends_count
+                .eventshow__modal-sum-label
+                  参加者数
+            .eventshow__modal-desc
+              %span.eventshow__modal-desc-text
+                = "----- 参加者一覧 -----"
+            .eventshow__modal-comments-render
+          .event__container-event-more
+          = link_to "とじる", "javascript:void(0)", class: "eventshow__modal-close"
+      %section.eventshow__container-side
+        .eventshow__container-side-box
+          .eventshow__container-side-form
+            .eventshow__container-side-form-box
+              .eventshow__container-side-status
+                %h4.eventshow__container-side-status-box
+                  %small.eventshow__container-side-status-small
+                    企画のステータス
+                  %br/
+                  %br/
+                  - if @event.end_date < Time.now
+                    %span.eventshow__container-side-status-span
+                      終了しました。
+                  - elsif Time.now.between?(@event.apply_start_date,@event.apply_end_date )
+                    %span.eventshow__container-side-status-span
+                      申込受付中！
+                  - else
+                    %span.eventshow__container-side-status-span
+                      申込受付期間
+                    %p.eventshow__container-side-status-term
+                      %br/
+                      = @event.apply_start_date
+                      から
+                      = @event.apply_end_date
+              - if user_signed_in?
+                .eventshow__container-side-attend
+                - if Time.now.between?(@event.apply_start_date,@event.apply_end_date )
+                  - if current_user.attends.find_by(event_id: @event.id)
+                    %a.eventshow__container-side-attend-btn
+                      %span.eventshow__container-side-attend-span
+                        申し込み済み
+                  - else
+                    = link_to(new_event_attend_path(@event.id), class: "eventshow__container-side-attend-btn") do
+                      %span.eventshow__container-side-attend-span
+                        申し込む
+                .eventshow__container-side-fav
+                  = render partial: "layouts/favorite", locals: { event: @event }
+              - else
+                .eventshow__container-side-regist
+                  = link_to(new_user_registration_path, class: "eventshow__container-side-regist-btn") do
+                    %span.eventshow__container-side-regist-span
+                      参加するにはこちら（無料登録）

@@ -1,0 +1,101 @@
+* Database creation
+<!-- ユーザー情報管理 -->
+#User
+## association
+  has_many :events, dependent: :destroy
+  has_many :likes,  dependent: :destroy
+  has_many :attends,dependent: :destroy
+
+## table
+  - t.string :email
+  - t.string :password
+  - t.text :avatar
+  - t.string :f_name
+  - t.string :l_name
+  - t.text :profile
+  - t.integer :gender
+  - t.string :birthday
+
+<!-- イベント情報管理 -->
+#event
+## association
+  belongs_to :user, :dest
+
+  has_many :likes,        dependent: :destroy
+  has_many :attends,      dependent: :destroy
+  has_many :event_photos, dependent: :destroy
+
+## table
+  - t.string :title
+  - t.date :start_date
+  - t.date :end_date
+  - t.text :summary
+  - t.text :details
+  - t.string :dest
+  - t.integer :status <!-- enum role: { public: 0, draft: 1 } -->
+  - t.integer :dest_id
+  - t.integer :user_id
+
+
+<!-- お気に入り情報管理 -->
+#favorite
+## association
+  belongs_to :user, :event
+
+## table
+  - t.references :event
+  - t.references :user
+
+
+<!-- イベント申込み者管理 -->
+#attend
+## association
+  belongs_to :user, :event
+
+## table
+  - t.references :event
+  - t.references :user
+  - t.text :comment
+
+
+<!-- イベント画像管理 -->
+#event_photo
+## association
+  belongs_to :event
+
+## table
+  - t.string :image
+  - t.integer :role <!-- enum role: { main: 0, sub: 1 } -->
+  - t.string :evnet_id
+
+
+<!-- エリア管理テーブル -->
+#dest
+## association
+  has_many :events
+
+## table
+  - t.string :name
+  - t.integer :class <!-- enum class: { country: 0, region: 1, pref: 2, city: 3 } -->
+
+
+* need gem list
+gem "erb2haml", :group => :development
+
+gem "haml-rails", "~> 0.9"
+
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'pry-rails'
+
+gem 'jquery-turbolinks'
+
+gem 'devise'
+
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+gem 'rmagick'
+
+gem 'kaminari'
+
+gem 'acts-as-taggable-on', '~> 4.0'

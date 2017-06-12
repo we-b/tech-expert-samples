@@ -1,0 +1,18 @@
+.welcome-container
+  .welcome-container-logo
+  .welcome-container-main
+    %h1.welcome-container-title
+      .welcome-container-title-box
+    %h2.welcome-container-catchcopy
+      どこにもない旅を、みんなでつくる。
+      %br/
+      trippiece <トリッピース>
+    .welcome-container-account
+      = link_to image_tag("register_mail.png", width: "280px"),"#{new_user_registration_path}"
+      .welcome-container-account-signup
+      .welcome-container-account-signin
+        = link_to "すでにユーザーの方はこちら", "#{new_user_session_path}",{class: "welcome-container-account-signin-text"}
+      = link_to image_tag("https://scdn.line-apps.com/n/line_add_friends/btn/ja.png", height: "36px", border: "0", alt: "友達追加"), "https://line.me/R/ti/p/%40fjd4227a"
+%h3.welcome-container-recommend おすすめの企画
+
+
